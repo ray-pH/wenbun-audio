@@ -18,6 +18,8 @@ def traverse(path: str):
             if name.startswith('cmn-'):
                 name = name[4:] # strip 'cmn-' prefix
             fullpath = os.path.join(path, file)
+            # remove './' prefix from the fullpath
+            fullpath = fullpath[2:]
             if name not in audio_dict:
                 audio_dict[name] = [fullpath]
             else:
