@@ -7,6 +7,10 @@ with open('../zh_dict.json', 'r') as f:
 
 words = zh_dict.keys()
 
+blacklist = [
+    "lingualibre-Q113-cmn-Mandarin Chinese/Assassas77/",
+]
+
 audio_dict = {}
 # traverse recursively and collect all the audio files into audio_dict
 def traverse(path: str):
@@ -20,6 +24,10 @@ def traverse(path: str):
             fullpath = os.path.join(path, file)
             # remove './' prefix from the fullpath
             fullpath = fullpath[2:]
+
+            if any(fullpath.startswith(blacklist_path) for blacklist_path in blacklist):
+                continue
+
             if name not in audio_dict:
                 audio_dict[name] = [fullpath]
             else:
