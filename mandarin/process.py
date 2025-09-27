@@ -18,6 +18,9 @@ def traverse(path: str):
         if os.path.isdir(os.path.join(path, file)):
             traverse(os.path.join(path, file))
         else:
+            extension = file.split('.')[-1]
+            if extension in ['json', 'txt', 'py']:
+                continue
             name = file.split('.')[0] # strip extension
             if name.startswith('cmn-'):
                 name = name[4:] # strip 'cmn-' prefix
@@ -46,7 +49,8 @@ for word in words:
 
 # write audio_dict.json
 with open('audio_dict.json', 'w', encoding='utf-8') as f:
-    json.dump(word_audio_dict, f, ensure_ascii=False, indent=2)
+    # json.dump(word_audio_dict, f, ensure_ascii=False, indent=2)
+    json.dump(audio_dict, f, ensure_ascii=False, indent=2)
 
 # write words_with_no_audio.txt
 with open('words_with_no_audio.txt', 'w', encoding='utf-8') as f:

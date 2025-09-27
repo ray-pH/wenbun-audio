@@ -38,7 +38,8 @@ for word in words:
 
 # write audio_dict.json
 with open('audio_dict.json', 'w', encoding='utf-8') as f:
-    json.dump(word_audio_dict, f, ensure_ascii=False, indent=2)
+    # json.dump(word_audio_dict, f, ensure_ascii=False, indent=2)
+    json.dump(audio_dict, f, ensure_ascii=False, indent=2)
 
 # write words_with_no_audio.txt
 with open('words_with_no_audio.txt', 'w', encoding='utf-8') as f:
